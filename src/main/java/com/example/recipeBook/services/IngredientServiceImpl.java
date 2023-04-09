@@ -9,6 +9,7 @@ import java.util.Map;
 
 @Service
 
+
 public class IngredientServiceImpl implements IngredientService {
     private  static long idCount = 1;
     private final Map<Long, Ingredient> ingredients = new HashMap<>();

@@ -1,9 +1,7 @@
 package com.example.recipeBook.controllers;
 
 import com.example.recipeBook.model.Ingredient;
-import com.example.recipeBook.model.Recipe;
 import com.example.recipeBook.services.IngredientService;
-import com.example.recipeBook.services.RecipeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @RestController
@@ -12,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class ingredientController {
     private final IngredientService ingredientService;
 
-    public IngredientController(IngredientService ingredientService) {
+    public void IngredientController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
     }
     @PostMapping
