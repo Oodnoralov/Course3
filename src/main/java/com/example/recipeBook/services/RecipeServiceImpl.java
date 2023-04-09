@@ -1,5 +1,6 @@
 package com.example.recipeBook.services;
 
+import com.example.recipeBook.exception.validationException;
 import com.example.recipeBook.model.Ingredient;
 import com.example.recipeBook.model.Recipe;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import java.util.Map;
 public class RecipeServiceImpl implements RecipeService {
     private  static long idCount = 1;
     private final Map<Long, Recipe> recipes = new HashMap<>();
-    private final Validation validationService;
+    private final ValidationService validationService;
 
     @Override
     public Recipe save(Recipe recipe) {
@@ -21,6 +22,24 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Recipe getById(Long id) {
         return recipes.get(id);
+    }
+
+    @Override
+    public Recipe update(Long id, Recipe recipe) {
+        if (!validationService.validate(Recipe recipe)) {
+            throw new validationException(recipe.toString());
+        }
+        return recipes.replace(id, recipe);
+    }
+
+    @Override
+    public Recipe delete(Long id) {
+        return recipes.remove(id);
+    }
+
+    @Override
+    public Map<Long, Recipe> getAll() {
+        return recipes;
     }
 
 

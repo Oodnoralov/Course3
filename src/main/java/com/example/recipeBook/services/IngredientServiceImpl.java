@@ -13,9 +13,9 @@ import java.util.Map;
 public class IngredientServiceImpl implements IngredientService {
     private  static long idCount = 1;
     private final Map<Long, Ingredient> ingredients = new HashMap<>();
-    private final Validation validation;
+    private final ValidationService validation;
 
-    public IngredientServiceImpl(Validation validation) {
+    public IngredientServiceImpl(ValidationService validation) {
         this.validation = validation;
     }
 
@@ -31,6 +31,25 @@ public class IngredientServiceImpl implements IngredientService {
     public Ingredient getById(Long id) {
 
         return ingredients.get(id);
+    }
+
+    @Override
+    public Ingredient update(Long id, Ingredient ingredient) {
+
+        if (!ValidationService.validate(Ingredient ingredient)) {
+            throw new validationException(ingredient.toString());
+        }
+        return ingredients.replace(id, ingredient);
+    }
+
+    @Override
+    public Ingredient delete(Long id) {
+        return ingredients.remove(id);
+    }
+
+    @Override
+    public Map<Long, Ingredient> getAll() {
+        return ingredients;
     }
 
 

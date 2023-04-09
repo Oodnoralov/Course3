@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 
-public class validationImpl implements Validation
+public class ValidationServiceImpl implements ValidationService
 
 {
 

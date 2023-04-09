@@ -1,9 +1,12 @@
 package com.example.recipeBook.controllers;
 
+import com.example.recipeBook.model.Ingredient;
 import com.example.recipeBook.model.Recipe;
 import com.example.recipeBook.services.RecipeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/recipe")
@@ -26,5 +29,25 @@ public class RecipeController {
             return ResponseEntity.notFound();
         }
         return ResponseEntity.of(recipeService.getById(id));
+    }
+
+    @PutMapping("/{id}")
+
+    public ResponseEntity<Ingredient> update(@PathVariable Long id, @RequestBody Recipe recipe)
+    {
+        return ResponseEntity.ok(recipeService.update(id, recipe));
+    }
+    @DeleteMapping("/{id}")
+
+    public ResponseEntity<Recipe> delete(@PathVariable Long id)
+    {
+        return ResponseEntity.ok(recipeService.delete(id));
+    }
+
+    @GetMapping("/{id}")
+
+    public ResponseEntity<Map<Long, Recipe>> getAll()
+    {
+        return ResponseEntity.ok(recipeService.getAll());
     }
 }
