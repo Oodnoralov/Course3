@@ -3,6 +3,8 @@ package com.example.recipeBook.controllers;
 import com.example.recipeBook.model.Ingredient;
 import com.example.recipeBook.model.Recipe;
 import com.example.recipeBook.services.RecipeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/recipe")
+@Tag(name = "API по работе с рецептами", description = "CRUD операции для рецептов")
 
 
 public class RecipeController {
@@ -19,10 +22,12 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
     @PostMapping
+    @Operation(summary = "Сохранение рецепта")
     public ResponseEntity<Recipe> save(@RequestBody Recipe recipe) {
         return ResponseEntity.ok(recipeService.save(recipe));
     }
     @GetMapping("/{id}")
+    @Operation(summary = "получение рецепта по ID")
     public ResponseEntity<Recipe> getById(@PathVariable Long id) {
         Recipe recipe = recipeService.getById(id);
         if (recipe == null) {
@@ -32,12 +37,14 @@ public class RecipeController {
     }
 
     @PutMapping("/{id}")
+    @Operation(summary = "изменение рецепта")
 
     public ResponseEntity<Ingredient> update(@PathVariable Long id, @RequestBody Recipe recipe)
     {
         return ResponseEntity.ok(recipeService.update(id, recipe));
     }
     @DeleteMapping("/{id}")
+    @Operation(summary = "удаление рецепта")
 
     public ResponseEntity<Recipe> delete(@PathVariable Long id)
     {
@@ -45,6 +52,7 @@ public class RecipeController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "получение всех рецептов")
 
     public ResponseEntity<Map<Long, Recipe>> getAll()
     {

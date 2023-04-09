@@ -1,7 +1,12 @@
 package com.example.recipeBook.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.util.List;
 import java.util.Objects;
+@Data
+@AllArgsConstructor
 
 public class Recipe {
     private String name;
@@ -9,66 +14,4 @@ public class Recipe {
     private List<Ingredient> ingredients;
     private List<String> steps;
 
-    public Recipe(String name, int cookingTime, List<Ingredient> ingredients, List<String> steps) {
 
-        this.name = name;
-        this.cookingTime = cookingTime;
-        this.ingredients = ingredients;
-        this.steps = steps;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getCookingTime() {
-        return cookingTime;
-    }
-
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public List<String> getSteps() {
-        return steps;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCookingTime(int cookingTime) {
-        this.cookingTime = cookingTime;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public void setSteps(List<String> steps) {
-        this.steps = steps;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Recipe recipe = (Recipe) o;
-        return cookingTime == recipe.cookingTime && Objects.equals(name, recipe.name) && Objects.equals(ingredients, recipe.ingredients) && Objects.equals(steps, recipe.steps);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, cookingTime, ingredients, steps);
-    }
-
-    @Override
-    public String toString() {
-        return "Recipe{" +
-                "name='" + name + '\'' +
-                ", cookingTime=" + cookingTime +
-                ", ingredients=" + ingredients +
-                ", steps=" + steps +
-                '}';
-    }
-}
