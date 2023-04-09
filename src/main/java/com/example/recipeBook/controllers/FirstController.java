@@ -18,11 +18,13 @@ public class FirstController {
 
 
     @GetMapping
-    public String Start() {
+    //исправлено
+    public String start() {
         return "Приложение запущено";
     }
     @GetMapping("/info")
-    public String Page() {
+    //исправлено
+    public String page() {
         return name+ "</br>" + nameProject+ "</br>" + date + "</br>" + description;
     }
 }

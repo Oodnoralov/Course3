@@ -21,8 +21,9 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        if(!validation.validate(ingredient))
+        if(!validation.validate(ingredient)) {
             throw new validationException(ingredient.toString());
+        }
         return ingredients.put(idCount++, ingredient);
     }
 

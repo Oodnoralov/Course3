@@ -22,6 +22,8 @@ public class validationImpl implements Validation
 
     @Override
     public boolean validate(Ingredient ingredient) {
-        return ingredient;
+        return ingredient != null
+        && ingredient.getName() != null
+                && ingredient.getMeasureUnit() != null;
     }
 }
